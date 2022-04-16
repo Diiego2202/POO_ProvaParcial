@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import javax.swing.JOptionPane;
 
 public class Processo {
 
     private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    private Queue<Reserva> reservas = new LinkedList<Reserva>();
+    private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
     public static void reservarMesa(){
 
+        boolean tipo;
         TipoPessoa tipoPessoa = inputTipoCliente(); 
 
         String nome = JOptionPane.showInputDialog("Nome: ");
@@ -32,14 +31,19 @@ public class Processo {
         }
 
         String aux = JOptionPane.showInputDialog("O pagamento será à vista? [S/N]: ").toLowerCase();
+
+        
+
         if("s".equals(aux)){
-            Reserva reserva = new Reserva(c, true);
+            tipo = true;
         } else{
-            Reserva reserva = new Reserva(c, false);    
+            tipo = false;        
         }
 
-        clientes.add(c);
+        Reserva reserva = new Reserva(c, tipo);
 
+        clientes.add(c);
+        reservas.add(reserva);
     }
 
     private static TipoPessoa inputTipoCliente(){
@@ -54,5 +58,11 @@ public class Processo {
         }
 
         return tp.equals("f") ? TipoPessoa.Fisica : TipoPessoa.Juridica;
+    }
+
+    public static void imprimir(){
+        for(int i = 0; i < reservas.size(); i++) {   
+            System.out.print(reservas.get(i));
+        } 
     }
 }

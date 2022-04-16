@@ -14,6 +14,7 @@ public class Main {
                         Processo.reservarMesa();
                         break;
                     case 2:
+                        Processo.imprimir();
                         break;
                     case 3:
                         break;

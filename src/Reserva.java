@@ -11,7 +11,7 @@ public class Reserva {
     @Override
     public String toString() {
         //retornar o tipo do cliente (pessoa física ou jurídica), seu nome e a forma de pagamento (à vista ou parcelado). 
-        return " ";
+        return "{Cliente: " + cliente.getNome() + "}";
     }
 
     public boolean getpagamentoAVista() {
