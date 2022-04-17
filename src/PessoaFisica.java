@@ -1,6 +1,6 @@
 public class PessoaFisica extends Cliente{
     
-    String cpf;
+    private String cpf;
 
     public PessoaFisica(String nome, String cpf){
         super(nome);
@@ -14,5 +14,9 @@ public class PessoaFisica extends Cliente{
 
     public String getCpf() {
         return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

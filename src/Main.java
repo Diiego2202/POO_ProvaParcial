@@ -14,13 +14,16 @@ public class Main {
                         Processo.reservarMesa();
                         break;
                     case 2:
-                        Processo.imprimir();
+                        Processo.pesquisarReserva();
                         break;
                     case 3:
+                        Processo.imprimirReservas();
                         break;
                     case 4:
+                        Processo.imprimirListaDeEspera();
                         break;
                     case 5:
+                        Processo.cancelarReserva();
                         break;
 
                 }
@@ -31,7 +34,8 @@ public class Main {
 
     public static String menu(){
 
-        String aux = "1. Reservar mesa";
+        String aux = "Restaurante SABOR SOFISTICADO";
+               aux += "\n1. Reservar mesa";
                aux += "\n2. Pesquisar reserva";
                aux += "\n3. Imprimir reservas";
                aux += "\n4. Imprimir lista de espera";
@@ -39,6 +43,5 @@ public class Main {
                aux += "\n6. Finalizar";
         
         return aux;
-
     }
 }
