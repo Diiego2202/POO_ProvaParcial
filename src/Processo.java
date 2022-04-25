@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 public class Processo {
 
-    private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
     public static void reservarMesa(){
@@ -47,7 +46,6 @@ public class Processo {
         Reserva reserva = new Reserva(c, tipo);
         reserva.setPagamentoAVista(tipo);
 
-        clientes.add(c);
         reservas.add(reserva);
         
         if(reservas.size() > 6){
@@ -76,45 +74,83 @@ public class Processo {
         String aux = JOptionPane.showInputDialog(null, "Informe seu CPF/CNPJ: ");
 
         for(int i = 0; i < reservas.size(); i++) {  
-        
-            
             if(reservas.get(i).getCliente() instanceof PessoaFisica){
                 Cliente c = reservas.get(i).getCliente();
                 PessoaFisica pf = (PessoaFisica) (c);
                 if(pf.getCpf().equals(aux)){
                     JOptionPane.showMessageDialog(null, "Você possui uma reserva");
+                } else{
+                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva");   
                 }
-            } else if(reservas.get(i).getCliente() instanceof PessoaJuridica){
+            }
+            if(reservas.get(i).getCliente() instanceof PessoaJuridica){
                 Cliente c = reservas.get(i).getCliente();
                 PessoaJuridica pj = (PessoaJuridica) (c);
                 if(pj.getCnpj().equals(aux)){
                     JOptionPane.showMessageDialog(null, "Você possui uma reserva");
+                } else{
+                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva");   
                 }
             }
         }
     }
 
     public static void imprimirReservas(){
-        for(int i = 0; i < reservas.size(); i++) {
-            if(i <= 6){
-                JOptionPane.showMessageDialog(null, reservas.get(i));
-            } else{
-                return;
-            }  
-        } 
+        if(reservas.size() > 0){
+            for(int i = 0; i < reservas.size(); i++) {
+                if(i < 6){
+                    JOptionPane.showMessageDialog(null, reservas.get(i));
+                } else{
+                    return;
+                }  
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "ERRO!! Não há reservas!");    
+        }
+         
     }
 
     public static void imprimirListaDeEspera(){
-        for(int i = 0; i < reservas.size(); i++) {
-            if(i > 6){
-                JOptionPane.showMessageDialog(null, "Posição na lista de espera: " + (i-6) + "\n" + reservas.get(i));
-            } 
-        } 
+        if(reservas.size() > 6){
+            for(int i = 0; i < reservas.size(); i++) {
+                if(i >= 6){
+                    JOptionPane.showMessageDialog(null, "Posição na lista de espera: " + (i-6) + "\n" + reservas.get(i));
+                }
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "ERRO!! Ainda restam revervas disponíveis!");     
+        }
+         
     }
 
     public static void cancelarReserva(){
-        for(int i = 0; i < clientes.size(); i++) {
-            System.out.println(clientes.get(i));
+
+        if(reservas.size() > 0){
+            String aux = JOptionPane.showInputDialog(null, "Informe seu CPF/CNPJ: ");
+
+            for(int i = 0; i < reservas.size(); i++) {  
+                if(reservas.get(i).getCliente() instanceof PessoaFisica){
+                    Cliente c = reservas.get(i).getCliente();
+                    PessoaFisica pf = (PessoaFisica) (c);
+                    if(pf.getCpf().equals(aux)){
+                        reservas.remove(i);
+                        JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!");
+                    } else{
+                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!");   
+                    }
+                } else if(reservas.get(i).getCliente() instanceof PessoaJuridica){
+                    Cliente c = reservas.get(i).getCliente();
+                    PessoaJuridica pj = (PessoaJuridica) (c);
+                    if(pj.getCnpj().equals(aux)){
+                        reservas.remove(i);
+                        JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!");
+                    } else{
+                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!");   
+                    }
+                }
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "ERRO!! Não existem reservas cadastradas!");    
         }
     }
 }
