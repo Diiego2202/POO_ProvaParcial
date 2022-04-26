@@ -2,34 +2,35 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        int opcao;
+        String opcao="";
 
-        do{
-            opcao = Integer.parseInt(JOptionPane.showInputDialog(menu()));
-            if(opcao < 1 || opcao > 6){
-                JOptionPane.showMessageDialog(null, "Opção inválida!");
-            } else{
-                switch(opcao){
-                    case 1: 
-                        Processo.reservarMesa();
-                        break;
-                    case 2:
-                        Processo.pesquisarReserva();
-                        break;
-                    case 3:
-                        Processo.imprimirReservas();
-                        break;
-                    case 4:
-                        Processo.imprimirListaDeEspera();
-                        break;
-                    case 5:
-                        Processo.cancelarReserva();
-                        break;
 
+        while(!opcao.equals("6")){
+            opcao = JOptionPane.showInputDialog(menu());
+            try {
+        
+                if ("".equals(opcao)) {
+                } else if ("1".equals(opcao)) {
+                    Processo.reservarMesa();
+                } else if ("2".equals(opcao)) {
+                    Processo.pesquisarReserva();
+                } else if ("3".equals(opcao)) {
+                    Processo.imprimirReservas();
+                } else if ("4".equals(opcao)) {
+                    Processo.imprimirListaDeEspera();
+                } else if ("5".equals(opcao)) {
+                    Processo.cancelarReserva();    
+                } else if("6".equals(opcao)){
+                    break;
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERRO!! Comando inválido!");
+                    throw new UnsupportedOperationException();       
                 }
+                
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
             }
-
-        } while(opcao != 6);
+        }
     }
 
     public static String menu(){

@@ -79,8 +79,10 @@ public class Processo {
                 PessoaFisica pf = (PessoaFisica) (c);
                 if(pf.getCpf().equals(aux)){
                     JOptionPane.showMessageDialog(null, "Você possui uma reserva");
+                    break;
                 } else{
-                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva");   
+                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva"); 
+                    break;  
                 }
             }
             if(reservas.get(i).getCliente() instanceof PessoaJuridica){
@@ -88,8 +90,10 @@ public class Processo {
                 PessoaJuridica pj = (PessoaJuridica) (c);
                 if(pj.getCnpj().equals(aux)){
                     JOptionPane.showMessageDialog(null, "Você possui uma reserva");
+                    break;
                 } else{
-                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva");   
+                    JOptionPane.showMessageDialog(null, "Você não possui uma reserva");
+                    break;   
                 }
             }
         }
@@ -135,8 +139,10 @@ public class Processo {
                     if(pf.getCpf().equals(aux)){
                         reservas.remove(i);
                         JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!");
+                        break;  
                     } else{
-                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!");   
+                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!");  
+                        break;   
                     }
                 } else if(reservas.get(i).getCliente() instanceof PessoaJuridica){
                     Cliente c = reservas.get(i).getCliente();
@@ -144,8 +150,10 @@ public class Processo {
                     if(pj.getCnpj().equals(aux)){
                         reservas.remove(i);
                         JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!");
+                        break;  
                     } else{
-                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!");   
+                        JOptionPane.showMessageDialog(null, "ERRO!! CPF não encontrado!"); 
+                        break;    
                     }
                 }
             }
