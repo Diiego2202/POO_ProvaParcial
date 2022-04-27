@@ -73,31 +73,31 @@ public class Processo {
 
         if(reservas.size() > 0){
             String aux = JOptionPane.showInputDialog(null, "Informe seu CPF/CNPJ: ");
+            int achou=0;
 
             for(int i = 0; i < reservas.size(); i++) {  
                 if(reservas.get(i).getCliente() instanceof PessoaFisica){
                     Cliente c = reservas.get(i).getCliente();
                     PessoaFisica pf = (PessoaFisica) (c);
                     if(pf.getCpf().equals(aux)){
-                        JOptionPane.showMessageDialog(null, "Você possui uma reserva");
-                        break;
-                    } else{
-                        JOptionPane.showMessageDialog(null, "Você não possui uma reserva"); 
-                        break;  
+                        achou++;
                     }
                 }
                 if(reservas.get(i).getCliente() instanceof PessoaJuridica){
                     Cliente c = reservas.get(i).getCliente();
                     PessoaJuridica pj = (PessoaJuridica) (c);
                     if(pj.getCnpj().equals(aux)){
-                        JOptionPane.showMessageDialog(null, "Você possui uma reserva");
-                        break;
-                    } else{
-                        JOptionPane.showMessageDialog(null, "Você não possui uma reserva");
-                        break;   
+                        achou++;
                     }
                 }
             }
+
+            if(achou != 0){
+                JOptionPane.showMessageDialog(null, "Você possui uma reserva");
+            } else{
+                JOptionPane.showMessageDialog(null, "Você não possui uma reserva");    
+            }
+
         } else{
             JOptionPane.showMessageDialog(null, "ERRO!! Não existem reservas cadastradas!");     
         }
