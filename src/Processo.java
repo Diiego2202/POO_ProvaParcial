@@ -104,7 +104,7 @@ public class Processo {
         if(reservas.size() > 6){
             for(int i = 0; i < reservas.size(); i++) {
                 if(i >= 6){
-                    JOptionPane.showMessageDialog(null, "Posição na lista de espera: " + (i-6) + "\n" + reservas.get(i));
+                    JOptionPane.showMessageDialog(null, "Posição na lista de espera: " + (i-5) + "\n" + reservas.get(i));
                 }
             }
         } else{
